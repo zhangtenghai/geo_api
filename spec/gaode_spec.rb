@@ -29,12 +29,12 @@ describe "test gaode" do
   end
 
   it "get coordinate from string" do
-    result = gaode.get_coordinate_from_string("思南路115弄")
+    result = gaode.get_coordinate_from_string("上海市思南路115弄")
+
     expect(result[:longitude]).not_to be_empty
     expect(result[:latitude]).not_to be_empty
 
     result = gaode.get_coordinate_from_string("思南路115弄", "上海市")
-   
     expect(result[:longitude]).not_to be_empty
     expect(result[:latitude]).not_to be_empty
 

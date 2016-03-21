@@ -2,6 +2,7 @@ require "geo_api/version"
 require 'geo_api/configuration'
 require "geo_api/baidu"
 require "geo_api/gaode"
+require "geo_api/qq"
 require 'logger'
 
 module GeoApi
@@ -52,12 +53,18 @@ module GeoApi
       proxy.get_coordinate_from_string(location, city = nil)
     end
 
+    def formatted_address(address)
+      proxy.formatted_address(address)
+    end
+
     def get_proxy
       case config.vendor
       when 'BAIDU'
         return GeoApi::Baidu.new(config)
       when 'GAODE'
         return GeoApi::Gaode.new(config)
+      when 'QQ'
+        return GeoApi::Qq.new(config)
       else
         raise '不支持的Vendor'
       end

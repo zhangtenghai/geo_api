@@ -38,6 +38,10 @@ module GeoApi
       end
     end
 
+    def formatted_address(location)
+      nil
+    end
+
     private
     def send_request(path, params)
       uri = URI("#{@config.server}#{path}")
