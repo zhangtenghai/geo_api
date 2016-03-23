@@ -10,11 +10,12 @@ module GeoApi
   class << self
     def setup
       yield config
-      Manager.new(config)
+      Manager.new(config.clone)
     end
 
     def config
       @config ||= Configuration.new
     end
   end
+  
 end

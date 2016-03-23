@@ -43,6 +43,9 @@ class Manager
   end
 
   def get_proxy(config)
+    p "*****"
+    p config
+    p config.vendor
     case config.vendor
     when 'BAIDU'
       return GeoApi::Baidu.new(config)
