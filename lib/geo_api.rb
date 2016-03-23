@@ -7,8 +7,10 @@ require 'logger'
 
 module GeoApi
   class << self
+
     def setup
       yield config
+      return self
     end
 
     def config
@@ -57,9 +59,8 @@ module GeoApi
       proxy.formatted_address(address)
     end
 
-    def get_proxy(vendor = nil)
-      vendor ||= config.vendor
-      case vendor
+    def get_proxy
+      case config.vendor
       when 'BAIDU'
         return GeoApi::Baidu.new(config)
       when 'GAODE'
