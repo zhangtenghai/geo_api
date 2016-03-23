@@ -57,8 +57,9 @@ module GeoApi
       proxy.formatted_address(address)
     end
 
-    def get_proxy
-      case config.vendor
+    def get_proxy(vendor = nil)
+      vendor ||= config.vendor
+      case vendor
       when 'BAIDU'
         return GeoApi::Baidu.new(config)
       when 'GAODE'
