@@ -6,15 +6,22 @@ require "geo_api/qq"
 require 'logger'
 
 module GeoApi
-  class << self
+    class << self
+      def setup
+        GeoApi.new(yield config)
+      end
 
-    def setup
-      yield config
-      return self
+      def config
+        @config ||= Configuration.new
+      end
     end
 
-    def config
-      @config ||= Configuration.new
+    def initialize(config)
+      self.config = config
+    end
+
+    def config(value)
+      @config = value
     end
 
     def logger
@@ -71,5 +78,4 @@ module GeoApi
         raise '不支持的Vendor'
       end
     end
-  end
 end

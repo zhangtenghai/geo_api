@@ -29,8 +29,8 @@ describe "test location" do
   end
 
   it "get coordinate from string" do
-    result = qq_map.get_coordinate_from_string("上海市思南路115弄")
-
+    result = qq_map.get_coordinate_from_string("上海市上海市黄浦区思南路115弄4号")
+    p result
     expect(result[:longitude]).not_to be_empty
     expect(result[:latitude]).not_to be_empty
 
