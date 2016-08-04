@@ -34,6 +34,10 @@ class Manager
     proxy.get_location_from_coordinate(longitude, latitude)
   end
 
+  def get_location_from_coordinate_with_type(longitude, latitude, coordtype = 5)
+    proxy.get_location_from_coordinate(longitude, latitude, coordtype)
+  end
+
   def get_coordinate_from_string(location, city = nil)
     proxy.get_coordinate_from_string(location, city = nil)
   end

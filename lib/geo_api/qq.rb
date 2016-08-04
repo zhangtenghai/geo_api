@@ -9,8 +9,14 @@ module GeoApi
       @config = config
     end
 
+    # 1 GPS坐标
+    # 2 sogou经纬度
+    # 3 baidu经纬度
+    # 4 mapbar经纬度
+    # 5 [默认]腾讯、google、高德坐标
+    # 6 sogou墨卡托
     def get_location_from_coordinate(longitude, latitude, coordtype = 5)
-      params = { location: "%s,%s" % [latitude,longitude], coordtype: coordtype, key: @config.key }
+      params = { location: "%s,%s" % [latitude,longitude], coord_type: coordtype, key: @config.key }
       result = send_request(params)
       if result && result["status"] == 0 && result["result"]
         databack = Hash.new
@@ -19,6 +25,8 @@ module GeoApi
         databack["city"] = result["result"]["address_component"]["city"]
         databack["region"] = result["result"]["address_component"]["district"]
         databack["detail"] = "#{result["result"]["address_component"]["street"]}#{result["result"]["address_component"]["street_number"]}"
+        databack["longitude"] = result["result"]["location"]["lng"].to_s
+        databack["latitude"] = result["result"]["location"]["lat"].to_s
         return databack
       else
         return nil

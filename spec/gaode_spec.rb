@@ -43,4 +43,14 @@ describe "test gaode" do
     expect(result).to eq(nil)
 
   end
+
+  it "get location by coordinate" do
+    latitude = "31.222925"
+    longitude = "121.49448"
+
+    location = gaode.get_location_from_coordinate(longitude, latitude)
+    p location
+    expect(true).to eq(true)
+  end
+
 end
